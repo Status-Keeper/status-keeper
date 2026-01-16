@@ -32,7 +32,7 @@ export function StatusPage() {
       .then(res => res.json())
       .then(json => {
         const [header, ...rows] = json.values
-        const u = header.indexOf('USERNAME')
+        const u = header.indexOf('USER_ID')
         const p = header.indexOf('№ проекта')
 
         console.log(`u is ${u}`);
