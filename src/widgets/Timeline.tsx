@@ -1,8 +1,8 @@
 import type { TimelineItem } from '../shared/mock'
 
-type Props = {
-  items: TimelineItem[]
-  currentId: string
+interface Props {
+  readonly items: TimelineItem[],
+  currentId: string,
 }
 
 export function Timeline({ items, currentId }: Props) {

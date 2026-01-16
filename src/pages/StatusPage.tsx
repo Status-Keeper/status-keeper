@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { mockStatus } from '../shared/mock';
 import { ProgressBar } from '../shared/ui/ProgressBar';
 import { StageSummaryCard } from '../widgets/StageSummaryCard';
-import { Timeline } from '../widgets/Timeline';
+// import { Timeline } from '../widgets/Timeline';
 
 const dataMocks = mockStatus;
 
@@ -114,7 +114,7 @@ export function StatusPage() {
               imageAlt="Фото этапа"
             />
 
-            <Timeline items={dataMocks.timeline} currentId={dataMocks.currentStage.id} />
+            {/* <Timeline items={dataMocks.timeline} currentId={dataMocks.currentStage.id} /> */}
           </main>
         </div>
       </div>
