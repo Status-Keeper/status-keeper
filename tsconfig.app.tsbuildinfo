@@ -1,1 +1,1 @@
-{"root":["./src/app.tsx","./src/main.tsx","./src/vite-env.d.ts","./src/pages/statuspage.tsx","./src/shared/mock.ts","./src/shared/ui/progressbar.tsx","./src/widgets/stagesummarycard.tsx","./src/widgets/timeline.tsx"],"version":"5.9.3"}
+{"root":["./src/app.tsx","./src/main.tsx","./src/vite-env.d.ts","./src/components/header.tsx","./src/components/progress.tsx","./src/components/stagecard.tsx","./src/components/timeline.tsx","./src/pages/statuspage.tsx"],"version":"5.9.3"}

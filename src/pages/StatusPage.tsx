@@ -84,7 +84,7 @@ export function StatusPage() {
       <h1 className="title">Статус ремонта</h1>
       <div className="subtitle">Квартира заказчика</div>
       <Progress value={data.progress} />
-      <StageCard deadline={data.deadline} />
+      <StageCard deadline={data.deadline} stage={data.stages.find(s => s.isCurrent)} />
       <Timeline stages={data.stages} />
     </div>
   )
