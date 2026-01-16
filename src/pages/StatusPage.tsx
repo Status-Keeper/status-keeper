@@ -74,8 +74,7 @@ export function StatusPage() {
           </li>
         ))}
       </ul>
-
-      return (
+      (
       <div className="app">
         <div className="phone">
           <header className="header">
@@ -118,7 +117,6 @@ export function StatusPage() {
           </main>
         </div>
       </div>
-      )
     </div>
   )
 }
