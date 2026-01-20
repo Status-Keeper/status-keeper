@@ -4,8 +4,8 @@
 	gap: 14px;
 	padding: 14px 18px;
 	border-radius: 16px;
-	background: linear-gradient(135deg, #2AABEE, #229ED9);
-	color: #fff;
+	/* background: linear-gradient(135deg, #2AABEE, #229ED9); */
+	color: #000;
 	text-decoration: none;
 	box-shadow: 0 8px 20px rgba(34, 158, 217, .35)
 }

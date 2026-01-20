@@ -153,12 +153,16 @@ export function StatusPage() {
   return (
     <div>
       <Header />
-      <h1 className="title">Статус ремонта</h1>
+      <div className='title-block'>
+        <h1 className="title">Статус ремонта</h1>
+        <TGSupportButton channelUrl='https://t.me/olegveres' />
+      </div>
+
       <div className="subtitle">{data.objectTitle}</div>
       <Progress value={data.progress} />
       <StageCard deadline={data.deadline} stage={data.stages.find(s => s.isCurrent)} />
       <Timeline stages={data.stages} stageImages={stageImages} />
-      <TGSupportButton channelUrl='https://t.me/olegveres' />
+
     </div>
   )
 }

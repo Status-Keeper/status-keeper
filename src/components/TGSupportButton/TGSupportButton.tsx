@@ -12,9 +12,7 @@ export function TGSupportButton({ channelUrl }: Props) {
 		>
 			<span className="tg-icon"><img src={image} /></span>
 			<span className="tg-text">
-				Написать в поддержку
-				<br />
-				<small>Telegram</small>
+				Поддержка
 			</span>
 		</a>
 	);

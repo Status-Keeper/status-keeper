@@ -94,6 +94,10 @@ body {
   background: #C5CBD3
 }
 
+.title-block {
+  display: flex;
+}
+
 .title {
   font-size: 32px;
   text-align: left;
