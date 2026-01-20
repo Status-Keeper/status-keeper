@@ -6,6 +6,11 @@ import { StageCard } from '../components/StageCard';
 import { Timeline } from '../components/Timeline';
 import { NotFoundPage } from './NotFoundPage/NotFoundPage';
 
+const tabs = {
+  status: 'status',
+  images: 'Images',
+}
+
 
 export type Stage = {
   id: string;
@@ -14,7 +19,10 @@ export type Stage = {
   deadline?: Date;
   isCompleted: boolean;
   isCurrent: boolean;
+}
 
+export type StageImages = {
+  [stageStep: string]: Array<{ key: string, url: string }>;
 }
 
 class ProjectStatus {
@@ -25,9 +33,15 @@ class ProjectStatus {
   objectTitle: string = '';
 }
 
+type Loaders = {
+  isDataLoading?: boolean;
+  isImagesLoading?: boolean;
+}
+
 export function StatusPage() {
-  const [data, setData] = useState<ProjectStatus | null>(null)
-  const [loading, setLoading] = useState<boolean>(true);
+  const [data, setData] = useState<ProjectStatus | null>(null);
+  const [stageImages, setStageImages] = useState<StageImages>({});
+  const [loading, setLoading] = useState<Loaders>({ isDataLoading: true, isImagesLoading: true });
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
@@ -36,7 +50,9 @@ export function StatusPage() {
 
     if (!usr || !project) return
 
-    fetch(import.meta.env.VITE_URL)
+    const url = new String(import.meta.env.VITE_URL).replace('<<tab>>', tabs.status);
+
+    fetch(url)
       .then(res => res.json())
       .then(json => {
         const [header, ...rows] = json.values
@@ -49,7 +65,7 @@ export function StatusPage() {
         const row = rows.find((r: string[]) => r[u] === usr && r[p] === project);
         if (!row) {
           setData(null);
-          setLoading(false);
+          setLoading({ ...loading, isDataLoading: false });
           return;
         }
 
@@ -73,7 +89,8 @@ export function StatusPage() {
           }
 
         }
-        console.log(row[5])
+
+        setLoading({ ...loading, isDataLoading: false });
 
         setData({
           title: row[2],
@@ -82,12 +99,51 @@ export function StatusPage() {
           deadline: row[5].toString(),
           objectTitle: row[4].toString()
         });
-
-        setLoading(false);
       })
-  }, [])
+  }, []);
 
-  if (loading) return <div>Загрузка...</div>
+  // извлечение изображений
+  useEffect(() => {
+    if (data === null) {
+      return;
+    }
+
+    const params = new URLSearchParams(window.location.search)
+    const usr = params.get('usr')
+    const project = params.get('project')
+
+    if (!usr || !project) return;
+
+    const url = new String(import.meta.env.VITE_URL).replace('<<tab>>', tabs.images);
+
+    fetch(url)
+      .then(res => res.json())
+      .then(json => {
+        const [header, ...rows] = json.values;
+        const u = header.indexOf('USER_ID');
+        const p = header.indexOf('№ проекта');
+
+        const values = rows.filter((r: string[]) => r[u] === usr && r[p] === project);
+
+        if (!values) {
+          setLoading({ ...loading, isImagesLoading: false });
+          return;
+        }
+
+        const stepImages: StageImages = {};
+
+        // @ts-ignore
+        values.forEach(step => {
+          const imageUrls = new String(step[5]).split(',').map(r => ({ key: r.trim(), url: `https://cp.puzzlebot.top/file?b=526145&f=${r.trim()}` }));
+          stepImages[step[3]] = imageUrls;
+        });
+
+        setLoading({ ...loading, isImagesLoading: false });
+        setStageImages(stepImages);
+      })
+  }, [data]);
+
+  if (loading.isDataLoading || loading.isImagesLoading) return <div>Загрузка...</div>
 
   if (data === null) {
     return (
@@ -102,7 +158,7 @@ export function StatusPage() {
       <div className="subtitle">{data.objectTitle}</div>
       <Progress value={data.progress} />
       <StageCard deadline={data.deadline} stage={data.stages.find(s => s.isCurrent)} />
-      <Timeline stages={data.stages} />
+      <Timeline stages={data.stages} stageImages={stageImages} />
     </div>
   )
 }

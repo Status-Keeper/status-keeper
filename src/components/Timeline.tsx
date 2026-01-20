@@ -1,8 +1,11 @@
-import { Stage } from "../pages/StatusPage";
+import { Stage, StageImages } from "../pages/StatusPage";
+import Carousel from 'react-gallery-carousel';
+import 'react-gallery-carousel/dist/index.css';
 
-type Props = { stages: Array<Stage> };
 
-export function Timeline({ stages }: Props) {
+type Props = { stages: Array<Stage>, stageImages: StageImages };
+
+export function Timeline({ stages, stageImages }: Props) {
 	return (
 		<section className="timeline">
 			{stages.map((stage, idx) => (
@@ -10,6 +13,16 @@ export function Timeline({ stages }: Props) {
 					<div className={"dot " + (stage.isCompleted || stage.isCurrent ? "done" : "")} >{(stage.isCompleted || stage.isCurrent) && '✓'}</div>
 					<div>
 						<div className="timeline-title">{stage.title}</div>
+						{
+							stageImages[stage.title] && (
+								<div>
+									<Carousel
+										images={stageImages[stage.title].map(img => ({ src: img.url }))} style={{ width: "100%" }}
+										canAutoPlay={false}
+									/>
+								</div>
+							)
+						}
 						{
 							stage.isCompleted &&
 							<div className="timeline-sub">Завершено {stage.status}</div>
