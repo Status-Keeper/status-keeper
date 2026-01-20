@@ -5,6 +5,7 @@ import { Progress } from '../components/Progress';
 import { StageCard } from '../components/StageCard';
 import { Timeline } from '../components/Timeline';
 import { NotFoundPage } from './NotFoundPage/NotFoundPage';
+import { TGSupportButton } from '../components/TGSupportButton/TGSupportButton';
 
 const tabs = {
   status: 'status',
@@ -26,7 +27,6 @@ export type StageImages = {
 }
 
 class ProjectStatus {
-  title: string = '';
   progress: number = 0;
   stages: Stage[] = [];
   deadline: string = '';
@@ -93,7 +93,6 @@ export function StatusPage() {
         setLoading({ ...loading, isDataLoading: false });
 
         setData({
-          title: row[2],
           progress: parseInt(row[19]),
           stages,
           deadline: row[5].toString(),
@@ -159,6 +158,7 @@ export function StatusPage() {
       <Progress value={data.progress} />
       <StageCard deadline={data.deadline} stage={data.stages.find(s => s.isCurrent)} />
       <Timeline stages={data.stages} stageImages={stageImages} />
+      <TGSupportButton channelUrl='https://t.me/olegveres' />
     </div>
   )
 }

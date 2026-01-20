@@ -1,0 +1,40 @@
+.tg-button {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	padding: 14px 18px;
+	border-radius: 16px;
+	background: linear-gradient(135deg, #2AABEE, #229ED9);
+	color: #fff;
+	text-decoration: none;
+	box-shadow: 0 8px 20px rgba(34, 158, 217, .35)
+}
+
+.tg-button:hover {
+	background: linear-gradient(135deg, #229ED9, #1C93CE)
+}
+
+.tg-icon {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, .2);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 20px
+}
+
+.tg-icon img {
+	width: 40px;
+}
+
+.tg-text {
+	font-weight: 700;
+	line-height: 1.2
+}
+
+.tg-text small {
+	font-weight: 500;
+	opacity: .9
+}
