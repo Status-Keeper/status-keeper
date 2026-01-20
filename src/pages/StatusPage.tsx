@@ -99,7 +99,7 @@ export function StatusPage() {
     <div>
       <Header />
       <h1 className="title">Статус ремонта</h1>
-      <div className="subtitle">Квартира заказчика</div>
+      <div className="subtitle">{data.objectTitle}</div>
       <Progress value={data.progress} />
       <StageCard deadline={data.deadline} stage={data.stages.find(s => s.isCurrent)} />
       <Timeline stages={data.stages} />
