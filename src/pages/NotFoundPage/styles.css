@@ -1,0 +1,46 @@
+.page {
+	width: 360px;
+	margin: 0 auto;
+	padding: 16px;
+	min-height: 100vh
+}
+
+.header {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 32px
+}
+
+.nf {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	padding-top: 40px
+}
+
+.nf-icon {
+	font-size: 64px;
+	font-weight: 900;
+	color: #6FB02A;
+	margin-bottom: 12px
+}
+
+.nf-title {
+	font-size: 28px;
+	margin: 8px 0
+}
+
+.nf-text {
+	font-size: 16px;
+	color: #6A7682;
+	margin-bottom: 16px
+}
+
+.nf-hint {
+	background: #EEF4EC;
+	border-radius: 16px;
+	padding: 14px 16px;
+	font-size: 14px;
+	color: #3E7C2B
+}

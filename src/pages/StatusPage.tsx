@@ -4,6 +4,7 @@ import { Header } from '../components/Header';
 import { Progress } from '../components/Progress';
 import { StageCard } from '../components/StageCard';
 import { Timeline } from '../components/Timeline';
+import { NotFoundPage } from './NotFoundPage/NotFoundPage';
 
 
 export type Stage = {
@@ -13,6 +14,7 @@ export type Stage = {
   deadline?: Date;
   isCompleted: boolean;
   isCurrent: boolean;
+
 }
 
 class ProjectStatus {
@@ -20,10 +22,12 @@ class ProjectStatus {
   progress: number = 0;
   stages: Stage[] = [];
   deadline: string = '';
+  objectTitle: string = '';
 }
 
 export function StatusPage() {
   const [data, setData] = useState<ProjectStatus | null>(null)
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
@@ -42,8 +46,12 @@ export function StatusPage() {
         console.log(`u is ${u}`);
         console.log(`p is ${p}`);
 
-        const row = rows.find((r: string[]) => r[u] === usr && r[p] === project)
-        if (!row) return
+        const row = rows.find((r: string[]) => r[u] === usr && r[p] === project);
+        if (!row) {
+          setData(null);
+          setLoading(false);
+          return;
+        }
 
         const stages: Array<Stage> = [];
         let hasCurrentStep = false;
@@ -72,11 +80,20 @@ export function StatusPage() {
           progress: parseInt(row[19]),
           stages,
           deadline: row[5].toString(),
-        })
+          objectTitle: row[4].toString()
+        });
+
+        setLoading(false);
       })
   }, [])
 
-  if (!data) return <div>Загрузка...</div>
+  if (loading) return <div>Загрузка...</div>
+
+  if (data === null) {
+    return (
+      <NotFoundPage />
+    )
+  }
 
   return (
     <div>
