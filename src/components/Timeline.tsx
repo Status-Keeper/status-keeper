@@ -31,14 +31,14 @@ export function Timeline({ stages, stageImages }: Props) {
 						{
 							(stage.isCurrent) &&
 							<div className="timeline-in-progress">
-								<div className="timeline-sub">Примерно до {stage.status}</div>
+								<div className="timeline-sub">Примерно до <span className="dark">{stage.deadline && stage.deadline?.toLocaleString('ru-ru', { month: "short", day: '2-digit' })}</span></div>
 								<div className="timeline-sub">В работе</div>
 							</div>
 						}
 
 						{
 							(!stage.isCurrent && !stage.isCompleted) &&
-							<div className="timeline-sub">Примерно до {stage.status}</div>
+							<div className="timeline-sub">Примерно до <span className="dark">{stage.deadline && stage.deadline?.toLocaleString('ru-ru', { month: "short", day: '2-digit' })}</span></div>
 						}
 
 					</div>

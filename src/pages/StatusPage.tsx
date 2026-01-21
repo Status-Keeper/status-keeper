@@ -8,7 +8,7 @@ import { NotFoundPage } from './NotFoundPage/NotFoundPage';
 import { TGSupportButton } from '../components/TGSupportButton/TGSupportButton';
 
 const tabs = {
-  status: 'status',
+  status: 'WebUI',
   images: 'Images',
 }
 
@@ -57,10 +57,7 @@ export function StatusPage() {
       .then(json => {
         const [header, ...rows] = json.values
         const u = header.indexOf('USER_ID')
-        const p = header.indexOf('№ проекта')
-
-        console.log(`u is ${u}`);
-        console.log(`p is ${p}`);
+        const p = header.indexOf('PROJECT_ID')
 
         const row = rows.find((r: string[]) => r[u] === usr && r[p] === project);
         if (!row) {
@@ -71,8 +68,8 @@ export function StatusPage() {
 
         const stages: Array<Stage> = [];
         let hasCurrentStep = false;
+        for (let i = 6, j = 0, k = 18; i <= 15; i++, j++, k++) {
 
-        for (let i = 20, j = 0; i <= 30; i++, j++) {
           stages.push(
             {
               id: i.toString(),
@@ -80,6 +77,7 @@ export function StatusPage() {
               status: row[i],
               isCompleted: row[i] === '✅',
               isCurrent: false,
+              deadline: row[k] ? new Date(row[k]) : undefined,
             }
           );
 
@@ -93,10 +91,10 @@ export function StatusPage() {
         setLoading({ ...loading, isDataLoading: false });
 
         setData({
-          progress: parseInt(row[19]),
+          progress: parseInt(row[3]),
           stages,
-          deadline: row[5].toString(),
-          objectTitle: row[4].toString()
+          deadline: row[4].toString(),
+          objectTitle: row[2].toString()
         });
       })
   }, []);
@@ -120,7 +118,7 @@ export function StatusPage() {
       .then(json => {
         const [header, ...rows] = json.values;
         const u = header.indexOf('USER_ID');
-        const p = header.indexOf('№ проекта');
+        const p = header.indexOf('PROJECT_ID');
 
         const values = rows.filter((r: string[]) => r[u] === usr && r[p] === project);
 

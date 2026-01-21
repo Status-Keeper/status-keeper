@@ -211,6 +211,11 @@ body {
   border: 3px solid #C5CBD3
 }
 
+.dark {
+  font-weight: bold;
+  color: #6FB02A;
+}
+
 .dot.done {
   background: #66B522;
   border-color: #66B522;
