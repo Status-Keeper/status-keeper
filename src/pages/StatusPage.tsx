@@ -153,7 +153,7 @@ export function StatusPage() {
       <Header />
       <div className='title-block'>
         <h1 className="title">Статус ремонта</h1>
-        <TGSupportButton channelUrl='https://t.me/olegveres' />
+        <TGSupportButton channelUrl='https://t.me/status_keeper_support_bot' />
       </div>
 
       <div className="subtitle">{data.objectTitle}</div>
