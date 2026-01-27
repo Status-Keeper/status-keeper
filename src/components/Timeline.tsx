@@ -15,7 +15,7 @@ export function Timeline({ stages, stageImages }: Props) {
 						<div className="timeline-title">{stage.title}</div>
 						{
 							stageImages[stage.title] && (
-								<div>
+								<div className="max-width">
 									<Carousel
 										images={stageImages[stage.title].map(img => ({ src: img.url }))} style={{ width: "100%" }}
 										canAutoPlay={false}

@@ -231,6 +231,10 @@ body {
   position: relative;
 }
 
+.max-width {
+  max-width: 600px;
+}
+
 .timeline-title {
   font-size: 18px;
   font-weight: 700

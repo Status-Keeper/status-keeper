@@ -118,7 +118,7 @@ export function StatusPage() {
       .then(json => {
         const [header, ...rows] = json.values;
         const u = header.indexOf('USER_ID');
-        const p = header.indexOf('PROJECT_ID');
+        const p = header.indexOf('№ проекта');
 
         const values = rows.filter((r: string[]) => r[u] === usr && r[p] === project);
 
