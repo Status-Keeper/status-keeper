@@ -1,6 +1,7 @@
 import { Stage, StageImages } from "../pages/StatusPage";
 import Carousel from 'react-gallery-carousel';
 import 'react-gallery-carousel/dist/index.css';
+import { toLocaleShortDate } from "../utils/dateformatter";
 
 
 type Props = { stages: Array<Stage>, stageImages: StageImages };
@@ -31,14 +32,14 @@ export function Timeline({ stages, stageImages }: Props) {
 						{
 							(stage.isCurrent) &&
 							<div className="timeline-in-progress">
-								<div className="timeline-sub">Примерно до <span className="dark">{stage.deadline && stage.deadline?.toLocaleString('ru-ru', { month: "short", day: '2-digit' })}</span></div>
+								<div className="timeline-sub">Примерно до <span className="dark">{stage.deadline && toLocaleShortDate(stage.deadline)}</span></div>
 								<div className="timeline-sub">В работе</div>
 							</div>
 						}
 
 						{
 							(!stage.isCurrent && !stage.isCompleted) &&
-							<div className="timeline-sub">Примерно до <span className="dark">{stage.deadline && stage.deadline?.toLocaleString('ru-ru', { month: "short", day: '2-digit' })}</span></div>
+							<div className="timeline-sub">Примерно до <span className="dark">{stage.deadline && toLocaleShortDate(stage.deadline)}</span></div>
 						}
 
 					</div>

@@ -29,7 +29,7 @@ export type StageImages = {
 class ProjectStatus {
   progress: number = 0;
   stages: Stage[] = [];
-  deadline: string = '';
+  deadline: Date = new Date();
   objectTitle: string = '';
 }
 
@@ -93,7 +93,7 @@ export function StatusPage() {
         setData({
           progress: parseInt(row[3]),
           stages,
-          deadline: row[4].toString(),
+          deadline: new Date(row[4].toString()),
           objectTitle: row[2].toString()
         });
       })
