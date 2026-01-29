@@ -37,6 +37,9 @@ export function StatusPage() {
   const [stageImages, setStageImages] = useState<StageImages>({});
   const [stageImageLinks, setStageImageLinks] = useState<{ [key: string]: string }>({});
 
+  const params = new URLSearchParams(window.location.search);
+  const isDebug = new Boolean(params.get('debug'));
+
 
   let isDataLoaded = usePageData(setData);
   let isImagesLoaded = useStageImages(data, setStageImages);
@@ -52,10 +55,16 @@ export function StatusPage() {
   if (!isDataLoaded || !isImagesLoaded || !isStageImageLinksLoaded) {
     return (
       <div>
-        <div>{JSON.stringify(data)}</div>
-        <div>{isDataLoaded.toString()}</div>
-        <div>{isImagesLoaded.toString()}</div>
-        <div>{isStageImageLinksLoaded.toString()}</div>
+        {
+          isDebug && (
+            <div>
+              <div>{JSON.stringify(data)}</div>
+              <div>{isDataLoaded.toString()}</div>
+              <div>{isImagesLoaded.toString()}</div>
+              <div>{isStageImageLinksLoaded.toString()}</div>
+            </div>
+          )
+        }
         <div>
           Загрузка...
         </div>
