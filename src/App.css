@@ -62,7 +62,7 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 700
 }
 
@@ -134,136 +134,6 @@ body {
   font-weight: 700
 }
 
-.stage-card {
-  background: #F1F4F7;
-  border-radius: 16px;
-  padding: 16px;
-  display: flex;
-  gap: 12px;
-  margin-bottom: 20px
-}
-
-.stage-info {
-  flex: 1
-}
-
-.stage-label {
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 4px
-}
-
-.stage-title {
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 8px
-}
-
-.stage-date {
-  font-size: 14px;
-  color: #9AA6B2;
-  margin-bottom: 12px
-}
-
-.stage-date b {
-  color: #6FB02A
-}
-
-.stage-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: #fff;
-  padding: 8px 12px;
-  border-radius: 12px;
-  font-weight: 600
-}
-
-.stage-badge span {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: #66B522;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center
-}
-
-.stage-image {
-  width: 96px;
-  height: 96px;
-  border-radius: 12px;
-  background: #D9DEE4;
-  justify-content: center;
-  display: flex;
-}
-
-.stage-image img {
-  max-width: 96px;
-  max-height: 96px;
-}
-
-.timeline-item {
-  display: flex;
-  gap: 12px;
-  margin: 0 8px 16px;
-  text-align: left;
-}
-
-.dot {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  border: 3px solid #C5CBD3
-}
-
-.dark {
-  font-weight: bold;
-  color: #6FB02A;
-}
-
-.dot.done {
-  background: #66B522;
-  border-color: #66B522;
-  border-radius: 50%;
-  background: #66B522;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center
-}
-
-.timeline {
-  position: relative;
-}
-
-.max-width {
-  max-width: 600px;
-}
-
-.timeline-title {
-  font-size: 18px;
-  font-weight: 700
-}
-
-.timeline-sub {
-  margin-top: 4px;
-  font-size: 14px;
-  color: #9AA6B2
-}
-
-.timeline-in-progress {
-  display: flex;
-  align-items: space-between;
-}
-
-.timeline-item.active {
-  background: #EEF4EC;
-  padding: 12px 8px;
-  border-radius: 16px;
-  margin: 0 0 16px;
-}
 
 .line {
   position: absolute;
@@ -275,4 +145,8 @@ body {
 
 .green {
   color: #66B522;
+}
+
+.support-area {
+  height: 60px;
 }

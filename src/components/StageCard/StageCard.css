@@ -1,0 +1,49 @@
+.stage-card {
+  background: #F1F4F7;
+  border-radius: 16px;
+  padding: 16px;
+  
+  gap: 12px;
+  margin-bottom: 20px
+}
+
+.stage-info {
+  display: flex;
+}
+
+.stage-label {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 4px
+}
+
+.stage-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px
+}
+
+.stage-date {
+  font-size: 14px;
+  color: #9AA6B2;
+  margin-bottom: 12px;
+	margin-top: 12px;
+}
+
+.stage-date b {
+  color: #6FB02A
+}
+
+.stage-image {
+  width: 96px;
+  height: 96px;
+  border-radius: 12px;
+  background: #D9DEE4;
+  justify-content: center;
+  display: flex;
+}
+
+.stage-image img {
+  max-width: 96px;
+  max-height: 96px;
+}

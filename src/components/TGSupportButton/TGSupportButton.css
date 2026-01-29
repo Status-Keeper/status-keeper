@@ -1,22 +1,23 @@
 .tg-button {
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
 	display: flex;
 	align-items: center;
 	gap: 14px;
-	padding: 14px 18px;
+	padding: 8px 10px;
 	border-radius: 16px;
-	/* background: linear-gradient(135deg, #2AABEE, #229ED9); */
+
+	background-color: #FFF;
+
 	color: #000;
 	text-decoration: none;
 	box-shadow: 0 8px 20px rgba(34, 158, 217, .35)
 }
 
-.tg-button:hover {
-	background: linear-gradient(135deg, #229ED9, #1C93CE)
-}
-
 .tg-icon {
-	width: 40px;
-	height: 40px;
+	width: 30px;
+	height: 30px;
 	border-radius: 50%;
 	background: rgba(255, 255, 255, .2);
 	display: flex;
@@ -26,12 +27,12 @@
 }
 
 .tg-icon img {
-	width: 40px;
+	width: 30px;
 }
 
 .tg-text {
-	font-weight: 700;
-	line-height: 1.2
+	font-weight: 500;
+	line-height: 1.1;
 }
 
 .tg-text small {

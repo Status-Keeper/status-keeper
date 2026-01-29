@@ -1,7 +1,10 @@
-import { Stage, StageImages } from "../pages/StatusPage/StatusPage";
+import { Stage, StageImages } from "../../pages/StatusPage/StatusPage";
 import Carousel from 'react-gallery-carousel';
 import 'react-gallery-carousel/dist/index.css';
-import { toLocaleShortDate } from "../utils/dateformatter";
+import { toLocaleShortDate } from "../../utils/dateformatter";
+import Collapsible from "../Collapsible/Collapsible";
+
+import './Timeline.css';
 
 
 type Props = { stages: Array<Stage>, stageImages: StageImages };
@@ -11,16 +14,24 @@ export function Timeline({ stages, stageImages }: Props) {
 		<section className="timeline">
 			{stages.map((stage, idx) => (
 				<div key={idx} className={"timeline-item " + (stage.isCurrent ? "active" : "")}>
-					<div className={"dot " + (stage.isCompleted || stage.isCurrent ? "done" : "")} >{(stage.isCompleted || stage.isCurrent) && '✓'}</div>
+					<div className={"dot " + (stage.isCompleted ? "done " : "") + (stage.isCurrent ? " current" : "")} >{stage.isCompleted && (<span>✓</span>)}</div>
 					<div>
-						<div className="timeline-title">{stage.title}</div>
+						{
+							!stageImages[stage.title] && <div className="timeline-title">{stage.title}</div>
+						}
+
 						{
 							stageImages[stage.title] && (
-								<div className="max-width">
-									<Carousel
-										images={stageImages[stage.title].map(img => ({ src: img.url }))} style={{ width: "100%" }}
-										canAutoPlay={false}
-									/>
+								<div>
+									<Collapsible title={<div className="timeline-title">{stage.title}</div>}>
+										<div className="max-width">
+
+											<Carousel
+												images={stageImages[stage.title].map(img => ({ src: img.url }))} style={{ width: "100%" }}
+												canAutoPlay={false}
+											/>
+										</div>
+									</Collapsible>
 								</div>
 							)
 						}
@@ -44,8 +55,9 @@ export function Timeline({ stages, stageImages }: Props) {
 
 					</div>
 				</div>
-			))}
+			))
+			}
 			{/* <span className="line"></span> */}
-		</section>
+		</section >
 	);
 }

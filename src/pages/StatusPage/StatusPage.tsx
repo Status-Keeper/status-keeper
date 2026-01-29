@@ -2,8 +2,8 @@ import { useState } from 'react'
 
 import { Header } from '../../components/Header';
 import { Progress } from '../../components/Progress';
-import { StageCard } from '../../components/StageCard';
-import { Timeline } from '../../components/Timeline';
+import { StageCard } from '../../components/StageCard/StageCard';
+import { Timeline } from '../../components/Timeline/Timeline';
 import { NotFoundPage } from '../NotFoundPage/NotFoundPage';
 import { TGSupportButton } from '../../components/TGSupportButton/TGSupportButton';
 import { usePageData } from './effects/usePageData';
@@ -83,13 +83,16 @@ export function StatusPage() {
       <Header />
       <div className='title-block'>
         <h1 className="title">Статус ремонта</h1>
-        <TGSupportButton channelUrl='https://t.me/status_keeper_support_bot' />
+
       </div>
       <div className="subtitle">{data.objectTitle}</div>
       <Progress value={data.progress} />
       <StageCard deadline={data.deadline} stage={data.stages.find(s => s.isCurrent)} imageLinks={stageImageLinks} />
       <Timeline stages={data.stages} stageImages={stageImages} />
+      <div className='support-area'>
 
+      </div>
+      <TGSupportButton channelUrl='https://t.me/status_keeper_support_bot' />
     </div>
   )
 }

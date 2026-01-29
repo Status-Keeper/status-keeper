@@ -1,0 +1,20 @@
+.collapsible-trigger {
+	display: flex;
+	justify-content: space-between;
+}
+
+.collapsible-image img {
+	width: 20px;
+}
+
+.collapsible-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out; /* Simple animation */
+}
+
+.collapsible-content.open {
+  max-height: 500px; /* A large enough value to show all content */
+  transition: max-height 0.3s ease-in;
+}
+
