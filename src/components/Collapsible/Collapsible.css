@@ -14,7 +14,7 @@
 }
 
 .collapsible-content.open {
-  max-height: 500px; /* A large enough value to show all content */
+  max-height: 7500px; /* A large enough value to show all content */
   transition: max-height 0.3s ease-in;
 }
 
