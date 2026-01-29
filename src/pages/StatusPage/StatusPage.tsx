@@ -43,16 +43,25 @@ export function StatusPage() {
   let isStageImageLinksLoaded = useStageImageLinks(setStageImageLinks);
 
 
-  if (!isDataLoaded || !isImagesLoaded || !isStageImageLinksLoaded) return (
-    <div>
-      {/* <div>{JSON.stringify(data)}</div>
-      <div>{isDataLoaded.toString()}</div>
-      <div>{isImagesLoaded.toString()}</div>
-      <div>{isStageImageLinksLoaded.toString()}</div> */}
+  if (data === null && isDataLoaded) {
+    return (
+      <NotFoundPage />
+    )
+  }
+
+  if (!isDataLoaded || !isImagesLoaded || !isStageImageLinksLoaded) {
+    return (
       <div>
-        Загрузка...
+        <div>{JSON.stringify(data)}</div>
+        <div>{isDataLoaded.toString()}</div>
+        <div>{isImagesLoaded.toString()}</div>
+        <div>{isStageImageLinksLoaded.toString()}</div>
+        <div>
+          Загрузка...
+        </div>
       </div>
-    </div>)
+    );
+  }
 
   if (data === null) {
     return (
