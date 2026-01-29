@@ -1,4 +1,4 @@
-import { Stage, StageImages } from "../pages/StatusPage";
+import { Stage, StageImages } from "../pages/StatusPage/StatusPage";
 import Carousel from 'react-gallery-carousel';
 import 'react-gallery-carousel/dist/index.css';
 import { toLocaleShortDate } from "../utils/dateformatter";

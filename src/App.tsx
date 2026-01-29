@@ -1,5 +1,5 @@
 import './App.css';
-import { StatusPage } from './pages/StatusPage';
+import { StatusPage } from './pages/StatusPage/StatusPage';
 
 function App() {
 

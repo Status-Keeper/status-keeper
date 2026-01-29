@@ -194,7 +194,14 @@ body {
   width: 96px;
   height: 96px;
   border-radius: 12px;
-  background: #D9DEE4
+  background: #D9DEE4;
+  justify-content: center;
+  display: flex;
+}
+
+.stage-image img {
+  max-width: 96px;
+  max-height: 96px;
 }
 
 .timeline-item {
