@@ -38,7 +38,7 @@ export function StatusPage() {
   const [stageImageLinks, setStageImageLinks] = useState<{ [key: string]: string }>({});
 
   const params = new URLSearchParams(window.location.search);
-  const isDebug = new Boolean(params.get('debug'));
+  const isDebug = params.get('debug');
 
 
   let isDataLoaded = usePageData(setData);
