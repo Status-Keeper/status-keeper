@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { Header } from '../../components/Header';
+import { Header } from '../../components/Header/Header';
 import { Progress } from '../../components/Progress';
 import { StageCard } from '../../components/StageCard/StageCard';
 import { Timeline } from '../../components/Timeline/Timeline';
