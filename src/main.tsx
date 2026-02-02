@@ -5,12 +5,14 @@ import App from './App.tsx'
 import './index.css'
 import { LandingPage } from './pages/LandingPage/LandingPage.tsx';
 import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage.tsx';
+import { ManagerPage } from './pages/ManagerPage/ManagerPage.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
         <Route path='status' element={<App />} />
+        <Route path='manager' element={<ManagerPage />} />
         <Route path='lp' element={<LandingPage />} />
         <Route path='/*' element={<NotFoundPage />} />
       </Routes>

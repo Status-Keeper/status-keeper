@@ -1,21 +1,20 @@
 import { useEffect, useState } from "react";
-import { ProjectStatus, StageImages } from "../StatusPage";
+import { ProjectStatus, StageImages } from "../ManagerPage";
 import { tabs } from "../../common/tabs";
 
-export function useStageImages(data: ProjectStatus | null, setStageImages: (data: StageImages) => void): boolean {
+export function useStageImages(data: Array<ProjectStatus>, setStageImages: (data: StageImages) => void): boolean {
 	const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
 	// извлечение изображений
 	useEffect(() => {
-		if (data === null) {
+		if (data === null || data.length == 0) {
 			return;
 		}
 
 		const params = new URLSearchParams(window.location.search)
-		const usr = params.get('usr')
-		const project = params.get('project')
+		const usr = params.get('usr');
 
-		if (!usr || !project) return;
+		if (!usr) return;
 
 		const url = new String(import.meta.env.VITE_URL).replace('<<tab>>', tabs.images);
 
@@ -26,23 +25,33 @@ export function useStageImages(data: ProjectStatus | null, setStageImages: (data
 				const u = header.indexOf('USER_ID');
 				const p = header.indexOf('№ проекта');
 
-				const values = rows.filter((r: string[]) => r[u] === usr && r[p] === project);
+				const dataRows = rows.filter((r: string[]) => r[u] === usr);
 
-				if (!values) {
+				if (!dataRows) {
 					setIsLoaded(true);
 					return;
 				}
 
 				const stepImages: StageImages = {};
 
+				// dataRows - это все изображения загруженные по всем этапам и всех проектов 
+
+
 				// @ts-ignore
-				values.forEach(step => {
+				dataRows.forEach(step => {
+
+
 					const imageUrls = new String(step[5]).split(',').map(r => ({ key: r.trim(), url: `https://cp.puzzlebot.top/file?b=526145&f=${r.trim()}` }));
-					stepImages[step[3]] = imageUrls;
+					if (!stepImages[step[p]]) {
+						stepImages[step[p]] = {};
+					}
+
+					stepImages[step[p]][step[3]] = imageUrls;
 				});
 
 				setIsLoaded(true);
 				setStageImages(stepImages);
+
 			})
 	}, [data]);
 

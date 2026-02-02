@@ -7,10 +7,9 @@ export function useStageImageLinks(setStageImageLinks: (data: { [key: string]: s
 
 	useEffect(() => {
 		const params = new URLSearchParams(window.location.search)
-		const usr = params.get('usr')
-		const project = params.get('project')
+		const usr = params.get('usr');
 
-		if (!usr || !project) return;
+		if (!usr) return;
 
 		const url = new String(import.meta.env.VITE_URL).replace('<<tab>>', tabs.status_images);
 		fetch(url)

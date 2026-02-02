@@ -17,11 +17,11 @@ export function Timeline({ stages, stageImages }: Props) {
 					<div className={"dot " + (stage.isCompleted ? "done " : "") + (stage.isCurrent ? " current" : "")} >{stage.isCompleted && (<span>✓</span>)}</div>
 					<div>
 						{
-							!stageImages[stage.title] && <div className="timeline-title">{stage.title}</div>
+							stageImages && !stageImages[stage.title] && <div className="timeline-title">{stage.title}</div>
 						}
 
 						{
-							stageImages[stage.title] && (
+							stageImages && stageImages[stage.title] && (
 								<div>
 									<Collapsible title={<div className="timeline-title">{stage.title}</div>}>
 										<div className="max-width">

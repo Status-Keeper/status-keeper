@@ -10,7 +10,9 @@ export function StageCard({ deadline, stage, imageLinks }: Props) {
 
 	if (stage) {
 		const link: string = imageLinks[stage?.title!];
-		url = images[link.toString()];
+		if (link) {
+			url = images[link.toString()];
+		}
 	}
 
 	if (!stage) {

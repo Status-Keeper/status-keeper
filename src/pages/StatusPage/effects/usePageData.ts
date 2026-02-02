@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { tabs } from './tabs';
+import { tabs } from '../../common/tabs';
 import { ProjectStatus, Stage } from '../StatusPage';
 
 export function usePageData(setData: (data: null | ProjectStatus) => void) {

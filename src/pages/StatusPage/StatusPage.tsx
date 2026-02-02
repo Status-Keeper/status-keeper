@@ -83,15 +83,14 @@ export function StatusPage() {
       <Header />
       <div className='title-block'>
         <h1 className="title">Статус ремонта</h1>
-
       </div>
+
       <div className="subtitle">{data.objectTitle}</div>
       <Progress value={data.progress} />
       <StageCard deadline={data.deadline} stage={data.stages.find(s => s.isCurrent)} imageLinks={stageImageLinks} />
       <Timeline stages={data.stages} stageImages={stageImages} />
-      <div className='support-area'>
-
-      </div>
+      
+      <div className='support-area'></div>
       <TGSupportButton channelUrl='https://t.me/status_keeper_support_bot' />
     </div>
   )
