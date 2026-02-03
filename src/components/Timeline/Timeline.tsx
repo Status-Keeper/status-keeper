@@ -15,7 +15,7 @@ export function Timeline({ stages, stageImages }: Props) {
 			{stages.map((stage, idx) => (
 				<div key={idx} className={"timeline-item " + (stage.isCurrent ? "active" : "")}>
 					<div className={"dot " + (stage.isCompleted ? "done " : "") + (stage.isCurrent ? " current" : "")} >{stage.isCompleted && (<span>✓</span>)}</div>
-					<div>
+					<div style={{width:'100%'}}>
 						{
 							stageImages && !stageImages[stage.title] && <div className="timeline-title">{stage.title}</div>
 						}
