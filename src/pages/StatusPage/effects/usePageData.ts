@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { tabs } from '../../common/tabs';
 import { ProjectStatus, Stage } from '../StatusPage';
+import { toLocaleShortDate } from '../../../utils/dateformatter';
 
 export function usePageData(setData: (data: null | ProjectStatus) => void) {
 	const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false);
@@ -13,51 +14,68 @@ export function usePageData(setData: (data: null | ProjectStatus) => void) {
 
 		if (!usr || !project) return
 
-		const url = new String(import.meta.env.VITE_URL).replace('<<tab>>', tabs.status);
+		const url = new String(import.meta.env.VITE_URL).replace('<<tab>>', tabs.database);
 
 		fetch(url)
 			.then(res => res.json())
 			.then(json => {
 				const [header, ...rows] = json.values;
 				const u = header.indexOf('USER_ID');
-				const p = header.indexOf('PROJECT_ID');
+				const p = header.indexOf('№ проекта');
 
-				const row = rows.find((r: string[]) => r[u] === usr && r[p] === project);
-				if (!row) {
+
+				const statgeTitle = header.indexOf('Название Этапа');
+				const finishDate = header.indexOf('Дата завершения этапа (факт)');
+				const planDate = header.indexOf('Дата завершения этапа (план)');
+				const stageStatus = header.indexOf('Статус этапа');
+				const currentStageIndex = header.indexOf('Текущий этап');
+
+				const repairPercent = header.indexOf('Статус ремонта');
+
+				const objectTitle = header.indexOf('Название объекта');
+
+
+
+				const info = rows.filter((r: string[]) => r[u] === usr && r[p] === project);
+				if (!info) {
 					setData(null);
 					setIsDataLoaded(true);
 					return;
 				}
 
-				const stages: Array<Stage> = [];
-				let hasCurrentStep = false;
-				for (let i = 6, j = 0, k = 18; i <= 15; i++, j++, k++) {
+				const projectInfo = info[0];
 
+				const currentStage = info[0][currentStageIndex];
+
+				const dataRows = info.splice(1);
+				const stages: Array<Stage> = [];
+
+				dataRows.map((stage: any, index: number) => {
 					stages.push(
 						{
-							id: i.toString(),
-							title: header[i],
-							status: row[i],
-							isCompleted: row[i] === '✅',
-							isCurrent: false,
-							deadline: row[k] ? new Date(row[k]) : undefined,
+							id: index.toString(),
+							title: stage[statgeTitle],
+							status: stage[finishDate] === '-' ? '' : toLocaleShortDate(new Date(stage[finishDate])),
+							isCompleted: stage[stageStatus] === '1',
+							isCurrent: stage[statgeTitle] === currentStage,
+							deadline: new Date(stage[planDate]),
 						}
 					);
 
-					if (!stages[j].isCompleted && !hasCurrentStep) {
-						stages[j].isCurrent = true;
-						hasCurrentStep = true;
-					}
+					// if (!stages[j].isCompleted && !hasCurrentStep) {
+					// stages[j].isCurrent = true;
+					// hasCurrentStep = true;
+					// }
+				})
 
-				}
 
 				setIsDataLoaded(true);
 
 				setData({
-					progress: parseInt(row[3]),
+					progress: parseInt(projectInfo[repairPercent]),
 					stages,
-					deadline: new Date(row[4].toString()),
-					objectTitle: row[2].toString()
+					deadline: stages[stages.length - 1].deadline!,
+					objectTitle: projectInfo[objectTitle],
 				});
 			})
 	}, []);
