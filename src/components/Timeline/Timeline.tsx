@@ -17,17 +17,17 @@ export function Timeline({ stages, stageImages }: Props) {
 					<div className={"dot " + (stage.isCompleted ? "done " : "") + (stage.isCurrent ? " current" : "")} >{stage.isCompleted && (<span>✓</span>)}</div>
 					<div style={{width:'100%'}}>
 						{
-							stageImages && !stageImages[stage.title] && <div className="timeline-title">{stage.title}</div>
+							stageImages && !stageImages[stage.id] && <div className="timeline-title">{stage.title}</div>
 						}
 
 						{
-							stageImages && stageImages[stage.title] && (
+							stageImages && stageImages[stage.id] && (
 								<div>
 									<Collapsible title={<div className="timeline-title">{stage.title}</div>}>
 										<div className="max-width">
 
 											<Carousel
-												images={stageImages[stage.title].map(img => ({ src: img.url }))} style={{ width: "100%" }}
+												images={stageImages[stage.id].map(img => ({ src: img.url }))} style={{ width: "100%" }}
 												canAutoPlay={false}
 											/>
 										</div>

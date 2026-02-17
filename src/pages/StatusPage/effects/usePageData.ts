@@ -25,6 +25,7 @@ export function usePageData(setData: (data: null | ProjectStatus) => void) {
 
 
 				const statgeTitle = header.indexOf('Название Этапа');
+				const stageIndex = header.indexOf('№ Этапа');
 				const finishDate = header.indexOf('Дата завершения этапа (факт)');
 				const planDate = header.indexOf('Дата завершения этапа (план)');
 				const stageStatus = header.indexOf('Статус этапа');
@@ -50,10 +51,10 @@ export function usePageData(setData: (data: null | ProjectStatus) => void) {
 				const dataRows = info.splice(1);
 				const stages: Array<Stage> = [];
 
-				dataRows.map((stage: any, index: number) => {
+				dataRows.map((stage: any) => {
 					stages.push(
 						{
-							id: index.toString(),
+							id: stage[stageIndex],
 							title: stage[statgeTitle],
 							status: stage[finishDate] === '-' ? '' : toLocaleShortDate(new Date(stage[finishDate])),
 							isCompleted: stage[stageStatus] === '1',
@@ -61,11 +62,6 @@ export function usePageData(setData: (data: null | ProjectStatus) => void) {
 							deadline: new Date(stage[planDate]),
 						}
 					);
-
-					// if (!stages[j].isCompleted && !hasCurrentStep) {
-					// stages[j].isCurrent = true;
-					// hasCurrentStep = true;
-					// }
 				})
 
 
