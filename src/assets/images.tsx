@@ -8,6 +8,7 @@ import image5 from './painting_work.png';
 import image6 from './tiling_work.png';
 import image7 from './technological_break.png';
 import image8 from './measurements.png';
+import image9 from './step_image.jpg'
 
 
 export const images: { [key: string]: string } = {
@@ -19,4 +20,5 @@ export const images: { [key: string]: string } = {
 	['tiling_work']: image6,
 	['technological_break']: image7,
 	['measurements']: image8,
+	['default']:  image9
 }

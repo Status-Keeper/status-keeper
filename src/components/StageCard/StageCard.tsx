@@ -6,14 +6,12 @@ import './StageCard.css'
 
 type Props = { deadline: Date, finishDate?: Date | null, stage: Stage | undefined, imageLinks: { [key: string]: string } }
 
-export function StageCard({ deadline, finishDate, stage, imageLinks }: Props) {
+export function StageCard({ deadline, finishDate, stage }: Props) {
 	let url = null;
+	
 
 	if (stage) {
-		const link: string = imageLinks[stage?.title!];
-		if (link) {
-			url = images[link.toString()];
-		}
+		url = images['default']
 	}
 
 	if (!stage) {
