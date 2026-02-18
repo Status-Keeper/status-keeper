@@ -16,6 +16,7 @@ export type Stage = {
   title: string;
   status: string;
   deadline?: Date;
+  finishDate: Date | null;
   isCompleted: boolean;
   isCurrent: boolean;
 }
@@ -28,6 +29,7 @@ export class ProjectStatus {
   progress: number = 0;
   stages: Stage[] = [];
   deadline: Date = new Date();
+  finishDate: Date | null =  null;
   objectTitle: string = '';
 }
 
@@ -87,7 +89,7 @@ export function StatusPage() {
 
       <div className="subtitle">{data.objectTitle}</div>
       <Progress value={data.progress} />
-      <StageCard deadline={data.deadline} stage={data.stages.find(s => s.isCurrent)} imageLinks={stageImageLinks} />
+      <StageCard deadline={data.deadline} finishDate={data.finishDate} stage={data.stages.find(s => s.isCurrent)} imageLinks={stageImageLinks} />
       <Timeline stages={data.stages} stageImages={stageImages} />
       
       <div className='support-area'></div>

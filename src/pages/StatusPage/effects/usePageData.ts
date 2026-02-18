@@ -58,6 +58,7 @@ export function usePageData(setData: (data: null | ProjectStatus) => void) {
 							title: stage[statgeTitle],
 							status: stage[finishDate] === '-' ? '' : toLocaleShortDate(new Date(stage[finishDate])),
 							isCompleted: stage[stageStatus] === '1',
+							finishDate: stage[finishDate] === '-' ? null : new Date(stage[finishDate]),
 							isCurrent: stage[statgeTitle] === currentStage,
 							deadline: new Date(stage[planDate]),
 						}
@@ -71,6 +72,7 @@ export function usePageData(setData: (data: null | ProjectStatus) => void) {
 					progress: parseInt(projectInfo[repairPercent]),
 					stages,
 					deadline: stages[stages.length - 1].deadline!,
+					finishDate: stages[stages.length - 1].finishDate,
 					objectTitle: projectInfo[objectTitle],
 				});
 			})

@@ -3,9 +3,9 @@ import { Stage } from "../../pages/StatusPage/StatusPage";
 import { toLocaleShortDate } from "../../utils/dateformatter";
 import './StageCard.css'
 
-type Props = { deadline: Date, stage: Stage | undefined, imageLinks: { [key: string]: string } }
+type Props = { deadline: Date, finishDate: Date | null, stage: Stage | undefined, imageLinks: { [key: string]: string } }
 
-export function StageCard({ deadline, stage, imageLinks }: Props) {
+export function StageCard({ deadline, finishDate, stage, imageLinks }: Props) {
 	let url = null;
 
 	if (stage) {
@@ -22,7 +22,7 @@ export function StageCard({ deadline, stage, imageLinks }: Props) {
 					<div>
 						<div className="stage-label">Проект завершен</div>
 						<div className="stage-date">
-							Дата завершения: <b>{toLocaleShortDate(deadline)}</b>
+							Дата завершения: <b>{toLocaleShortDate(finishDate ?? deadline)}</b>
 						</div>
 					</div>
 				</div>
