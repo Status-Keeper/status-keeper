@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { tabs } from '../../common/tabs';
-import { ProjectStatus, Stage } from '../StatusPage';
 import { toLocaleShortDate } from '../../../utils/dateformatter';
+import { ProjectStatus } from '../../../utils/types/ProjectStatus';
+import { Stage } from '../../../utils/types/Stage';
 
 export function usePageData(setData: (data: null | ProjectStatus) => void) {
 	const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false);
@@ -69,6 +70,7 @@ export function usePageData(setData: (data: null | ProjectStatus) => void) {
 				setIsDataLoaded(true);
 
 				setData({
+					id: info[p],
 					progress: parseInt(projectInfo[repairPercent]),
 					stages,
 					deadline: stages[stages.length - 1].deadline!,

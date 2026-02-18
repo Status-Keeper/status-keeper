@@ -10,33 +10,14 @@ import { usePageData } from './effects/usePageData';
 import { useStageImages } from './effects/useStageImages';
 import { useStageImageLinks } from './effects/useStageImageLinks';
 import Collapsible from '../../components/Collapsible/Collapsible';
+import { ProjectStatus } from '../../utils/types/ProjectStatus';
+import { ProjectStageImages } from '../../utils/types/ProjectStepImages';
 
-
-export type Stage = {
-	id: string;
-	title: string;
-	status: string;
-	deadline?: Date;
-	isCompleted: boolean;
-	isCurrent: boolean;
-}
-
-export type StageImages = {
-	[projectId: string]: { [stageStep: string]: Array<{ key: string, url: string }> };
-}
-
-export class ProjectStatus {
-	id: string = '';
-	progress: number = 0;
-	stages: Stage[] = [];
-	deadline: Date = new Date();
-	objectTitle: string = '';
-}
 
 
 export function ManagerPage() {
 	const [data, setData] = useState<Array<ProjectStatus>>([]);
-	const [stageImages, setStageImages] = useState<StageImages>({});
+	const [stageImages, setStageImages] = useState<ProjectStageImages>({});
 	const [stageImageLinks, setStageImageLinks] = useState<{ [key: string]: string }>({});
 
 	const params = new URLSearchParams(window.location.search);
@@ -92,7 +73,7 @@ export function ManagerPage() {
 							<div style={{ width: '100%' }}>
 								<h1 className="title">{project.objectTitle}</h1>
 								<Progress key={`ps_${project.id}`} value={project.progress} />
-								<StageCard key={`sc_${project.id}`} deadline={project.deadline} stage={project.stages.find(s => s.isCurrent)} imageLinks={stageImageLinks} />
+								<StageCard key={`sc_${project.id}`} deadline={project.deadline} finishDate={project.finishDate} stage={project.stages.find(s => s.isCurrent)} imageLinks={stageImageLinks} />
 							</div>
 						)}>
 							<Timeline key={`tl_${project.id}`} stages={project.stages} stageImages={stageImages[project.id]} />

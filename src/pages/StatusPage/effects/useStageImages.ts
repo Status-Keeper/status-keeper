@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { ProjectStatus, StageImages } from "../StatusPage";
 import { tabs } from "../../common/tabs";
+import { ProjectStatus } from "../../../utils/types/ProjectStatus";
+import { StageImages } from "../../../utils/types/StageItems";
 
 export function useStageImages(data: ProjectStatus | null, setStageImages: (data: StageImages) => void): boolean {
 	const [isLoaded, setIsLoaded] = useState<boolean>(false);

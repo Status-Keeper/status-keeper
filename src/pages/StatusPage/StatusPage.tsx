@@ -9,30 +9,8 @@ import { TGSupportButton } from '../../components/TGSupportButton/TGSupportButto
 import { usePageData } from './effects/usePageData';
 import { useStageImages } from './effects/useStageImages';
 import { useStageImageLinks } from './effects/useStageImageLinks';
-
-
-export type Stage = {
-  id: string;
-  title: string;
-  status: string;
-  deadline?: Date;
-  finishDate: Date | null;
-  isCompleted: boolean;
-  isCurrent: boolean;
-}
-
-export type StageImages = {
-  [stageStep: string]: Array<{ key: string, url: string }>;
-}
-
-export class ProjectStatus {
-  progress: number = 0;
-  stages: Stage[] = [];
-  deadline: Date = new Date();
-  finishDate: Date | null =  null;
-  objectTitle: string = '';
-}
-
+import { ProjectStatus } from '../../utils/types/ProjectStatus';
+import { StageImages } from '../../utils/types/StageItems';
 
 export function StatusPage() {
   const [data, setData] = useState<ProjectStatus | null>(null);
@@ -91,7 +69,7 @@ export function StatusPage() {
       <Progress value={data.progress} />
       <StageCard deadline={data.deadline} finishDate={data.finishDate} stage={data.stages.find(s => s.isCurrent)} imageLinks={stageImageLinks} />
       <Timeline stages={data.stages} stageImages={stageImages} />
-      
+
       <div className='support-area'></div>
       <TGSupportButton channelUrl='https://t.me/status_keeper_support_bot' />
     </div>

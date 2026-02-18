@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
-import { ProjectStatus, StageImages } from "../ManagerPage";
-import { tabs } from "../../common/tabs";
 
-export function useStageImages(data: Array<ProjectStatus>, setStageImages: (data: StageImages) => void): boolean {
+import { tabs } from "../../common/tabs";
+import { ProjectStatus } from "../../../utils/types/ProjectStatus";
+import { ProjectStageImages } from "../../../utils/types/ProjectStepImages";
+
+export function useStageImages(data: Array<ProjectStatus>, setStageImages: (data: ProjectStageImages) => void): boolean {
 	const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
 	// извлечение изображений
@@ -32,7 +34,7 @@ export function useStageImages(data: Array<ProjectStatus>, setStageImages: (data
 					return;
 				}
 
-				const stepImages: StageImages = {};
+				const stepImages: ProjectStageImages = {};
 
 				// dataRows - это все изображения загруженные по всем этапам и всех проектов 
 

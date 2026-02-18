@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { tabs } from '../../common/tabs';
-import { ProjectStatus, Stage } from '../ManagerPage';
 import { toLocaleShortDate } from '../../../utils/dateformatter';
+import { ProjectStatus } from '../../../utils/types/ProjectStatus';
+import { Stage } from '../../../utils/types/Stage';
 
 export function usePageData(setData: (data: Array<ProjectStatus>) => void) {
 	const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false);
@@ -75,6 +76,7 @@ export function usePageData(setData: (data: Array<ProjectStatus>) => void) {
 								status: stage[finishDate] === '-' ? '' : toLocaleShortDate(new Date(stage[finishDate])),
 								isCompleted: stage[stageStatus] === '1',
 								isCurrent: stage[statgeTitle] === currentStage,
+								finishDate: stage[finishDate] === '-' ? null : new Date(stage[finishDate]),
 								deadline: new Date(stage[planDate]),
 							}
 						);
@@ -85,6 +87,7 @@ export function usePageData(setData: (data: Array<ProjectStatus>) => void) {
 						progress: parseInt(projectInfo[repairPercent]),
 						stages,
 						deadline: stages[stages.length - 1].deadline!,
+						finishDate: stages[stages.length - 1].finishDate,
 						objectTitle: projectInfo[objectTitle],
 					});
 				}

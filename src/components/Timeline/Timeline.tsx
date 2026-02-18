@@ -1,8 +1,10 @@
-import { Stage, StageImages } from "../../pages/StatusPage/StatusPage";
+
 import Carousel from 'react-gallery-carousel';
 import 'react-gallery-carousel/dist/index.css';
 import { toLocaleShortDate } from "../../utils/dateformatter";
 import Collapsible from "../Collapsible/Collapsible";
+import { StageImages } from '../../utils/types/StageItems';
+import { Stage } from '../../utils/types/Stage';
 
 import './Timeline.css';
 
@@ -15,7 +17,7 @@ export function Timeline({ stages, stageImages }: Props) {
 			{stages.map((stage, idx) => (
 				<div key={idx} className={"timeline-item " + (stage.isCurrent ? "active" : "")}>
 					<div className={"dot " + (stage.isCompleted ? "done " : "") + (stage.isCurrent ? " current" : "")} >{stage.isCompleted && (<span>✓</span>)}</div>
-					<div style={{width:'100%'}}>
+					<div style={{ width: '100%' }}>
 						{
 							stageImages && !stageImages[stage.id] && <div className="timeline-title">{stage.title}</div>
 						}
