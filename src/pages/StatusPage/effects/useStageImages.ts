@@ -13,10 +13,13 @@ export function useStageImages(data: ProjectStatus | null, setStageImages: (data
 		}
 
 		const params = new URLSearchParams(window.location.search)
-		const usr = params.get('usr')
-		const project = params.get('project')
+		const id = params.get('id');
 
-		if (!usr || !project) return;
+
+		if (!id) return;
+
+		const userId = data.userId;
+		const projectId = data.id;
 
 		const url = new String(import.meta.env.VITE_URL).replace('<<tab>>', tabs.images);
 
@@ -27,7 +30,7 @@ export function useStageImages(data: ProjectStatus | null, setStageImages: (data
 				const u = header.indexOf('USER_ID');
 				const p = header.indexOf('№ проекта');
 
-				const values = rows.filter((r: string[]) => r[u] === usr && r[p] === project);
+				const values = rows.filter((r: string[]) => r[u] === userId && r[p] === projectId);
 
 				if (!values) {
 					setIsLoaded(true);

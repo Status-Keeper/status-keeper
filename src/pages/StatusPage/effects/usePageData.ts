@@ -10,10 +10,10 @@ export function usePageData(setData: (data: null | ProjectStatus) => void) {
 
 	useEffect(() => {
 		const params = new URLSearchParams(window.location.search)
-		const usr = params.get('usr')
-		const project = params.get('project')
+		const id = params.get('id')
 
-		if (!usr || !project) return
+
+		if (!id) return;
 
 		const url = new String(import.meta.env.VITE_URL).replace('<<tab>>', tabs.database);
 
@@ -21,7 +21,8 @@ export function usePageData(setData: (data: null | ProjectStatus) => void) {
 			.then(res => res.json())
 			.then(json => {
 				const [header, ...rows] = json.values;
-				const u = header.indexOf('USER_ID');
+				const guid = header.indexOf('Project_ID_MD5');
+				const userId = header.indexOf('USER_ID');
 				const p = header.indexOf('№ проекта');
 
 
@@ -37,8 +38,7 @@ export function usePageData(setData: (data: null | ProjectStatus) => void) {
 				const objectTitle = header.indexOf('Название объекта');
 
 
-
-				const info = rows.filter((r: string[]) => r[u] === usr && r[p] === project);
+				const info = rows.filter((r: string[]) => r[guid] === id);
 				if (!info) {
 					setData(null);
 					setIsDataLoaded(true);
@@ -71,6 +71,7 @@ export function usePageData(setData: (data: null | ProjectStatus) => void) {
 
 				setData({
 					id: info[p],
+					userId: info[userId],
 					progress: parseInt(projectInfo[repairPercent]),
 					stages,
 					deadline: stages[stages.length - 1].deadline!,

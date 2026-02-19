@@ -84,6 +84,7 @@ export function usePageData(setData: (data: Array<ProjectStatus>) => void) {
 
 					porjects.push({
 						id: keys[i],
+						userId: projectInfo[userId],
 						progress: parseInt(projectInfo[repairPercent]),
 						stages,
 						deadline: stages[stages.length - 1].deadline!,

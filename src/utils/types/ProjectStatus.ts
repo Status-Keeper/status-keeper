@@ -2,6 +2,7 @@ import { Stage } from "./Stage";
 
 export class ProjectStatus {
 	id: string  = '';
+	userId: string = '';
 	progress: number = 0;
 	stages: Stage[] = [];
 	deadline: Date = new Date();

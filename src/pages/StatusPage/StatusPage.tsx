@@ -31,6 +31,11 @@ export function StatusPage() {
     )
   }
 
+  console.log(`
+    is data loaded: ${isDataLoaded}
+    is images loaded: ${isImagesLoaded}
+    `);
+
   if (!isDataLoaded || !isImagesLoaded) {
     return (
       <div>
