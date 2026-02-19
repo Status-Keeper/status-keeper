@@ -1,24 +1,14 @@
+import i0010 from './0-10.jpg';
+import i1030 from './10-30.jpg';
+import i3080 from './30-80.jpg';
+import i80100 from './80-100.jpg';
 
+export function getStageImage(percent: number) {
+	if (percent < 11) return i0010;
 
-import image1 from './partition_erection.png';
-import image2 from './dismantling.png';
-import image3 from './floor_pouring.png';
-import image4 from './communication.png';
-import image5 from './painting_work.png';
-import image6 from './tiling_work.png';
-import image7 from './technological_break.png';
-import image8 from './measurements.png';
-import image9 from './step_image.jpg'
+	if (percent < 31) return i1030;
 
+	if (percent < 81) return i3080;
 
-export const images: { [key: string]: string } = {
-	['partition_erection']: image1,
-	['dismantling']: image2,
-	['floor_pouring']: image3,
-	['communication']: image4,
-	['painting_work']: image5,
-	['tiling_work']: image6,
-	['technological_break']: image7,
-	['measurements']: image8,
-	['default']:  image9
+	return i80100;
 }

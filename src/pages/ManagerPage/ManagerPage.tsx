@@ -8,7 +8,6 @@ import { NotFoundPage } from '../NotFoundPage/NotFoundPage';
 import { TGSupportButton } from '../../components/TGSupportButton/TGSupportButton';
 import { usePageData } from './effects/usePageData';
 import { useStageImages } from './effects/useStageImages';
-import { useStageImageLinks } from './effects/useStageImageLinks';
 import Collapsible from '../../components/Collapsible/Collapsible';
 import { ProjectStatus } from '../../utils/types/ProjectStatus';
 import { ProjectStageImages } from '../../utils/types/ProjectStepImages';
@@ -18,7 +17,6 @@ import { ProjectStageImages } from '../../utils/types/ProjectStepImages';
 export function ManagerPage() {
 	const [data, setData] = useState<Array<ProjectStatus>>([]);
 	const [stageImages, setStageImages] = useState<ProjectStageImages>({});
-	const [stageImageLinks, setStageImageLinks] = useState<{ [key: string]: string }>({});
 
 	const params = new URLSearchParams(window.location.search);
 	const isDebug = params.get('debug');
@@ -26,7 +24,7 @@ export function ManagerPage() {
 
 	let isDataLoaded = usePageData(setData);
 	let isImagesLoaded = useStageImages(data, setStageImages);
-	let isStageImageLinksLoaded = useStageImageLinks(setStageImageLinks);
+	
 
 
 	if (data === null && isDataLoaded) {
@@ -35,7 +33,7 @@ export function ManagerPage() {
 		)
 	}
 
-	if (!isDataLoaded || !isImagesLoaded || !isStageImageLinksLoaded) {
+	if (!isDataLoaded || !isImagesLoaded) {
 		return (
 			<div>
 				{
@@ -44,7 +42,6 @@ export function ManagerPage() {
 							<div>{JSON.stringify(data)}</div>
 							<div>{isDataLoaded.toString()}</div>
 							<div>{isImagesLoaded.toString()}</div>
-							<div>{isStageImageLinksLoaded.toString()}</div>
 						</div>
 					)
 				}
@@ -73,7 +70,7 @@ export function ManagerPage() {
 							<div style={{ width: '100%' }}>
 								<h1 className="title">{project.objectTitle}</h1>
 								<Progress key={`ps_${project.id}`} value={project.progress} />
-								<StageCard key={`sc_${project.id}`} deadline={project.deadline} finishDate={project.finishDate} stage={project.stages.find(s => s.isCurrent)} imageLinks={stageImageLinks} />
+								<StageCard key={`sc_${project.id}`} percent={project.progress} deadline={project.deadline} finishDate={project.finishDate} stage={project.stages.find(s => s.isCurrent)} />
 							</div>
 						)}>
 							<Timeline key={`tl_${project.id}`} stages={project.stages} stageImages={stageImages[project.id]} />

@@ -8,14 +8,13 @@ import { NotFoundPage } from '../NotFoundPage/NotFoundPage';
 import { TGSupportButton } from '../../components/TGSupportButton/TGSupportButton';
 import { usePageData } from './effects/usePageData';
 import { useStageImages } from './effects/useStageImages';
-import { useStageImageLinks } from './effects/useStageImageLinks';
 import { ProjectStatus } from '../../utils/types/ProjectStatus';
 import { StageImages } from '../../utils/types/StageItems';
 
 export function StatusPage() {
   const [data, setData] = useState<ProjectStatus | null>(null);
   const [stageImages, setStageImages] = useState<StageImages>({});
-  const [stageImageLinks, setStageImageLinks] = useState<{ [key: string]: string }>({});
+
 
   const params = new URLSearchParams(window.location.search);
   const isDebug = params.get('debug');
@@ -23,7 +22,7 @@ export function StatusPage() {
 
   let isDataLoaded = usePageData(setData);
   let isImagesLoaded = useStageImages(data, setStageImages);
-  let isStageImageLinksLoaded = useStageImageLinks(setStageImageLinks);
+
 
 
   if (data === null && isDataLoaded) {
@@ -32,7 +31,7 @@ export function StatusPage() {
     )
   }
 
-  if (!isDataLoaded || !isImagesLoaded || !isStageImageLinksLoaded) {
+  if (!isDataLoaded || !isImagesLoaded) {
     return (
       <div>
         {
@@ -41,7 +40,6 @@ export function StatusPage() {
               <div>{JSON.stringify(data)}</div>
               <div>{isDataLoaded.toString()}</div>
               <div>{isImagesLoaded.toString()}</div>
-              <div>{isStageImageLinksLoaded.toString()}</div>
             </div>
           )
         }
@@ -67,7 +65,7 @@ export function StatusPage() {
 
       <div className="subtitle">{data.objectTitle}</div>
       <Progress value={data.progress} />
-      <StageCard deadline={data.deadline} finishDate={data.finishDate} stage={data.stages.find(s => s.isCurrent)} imageLinks={stageImageLinks} />
+      <StageCard percent={data.progress} deadline={data.deadline} finishDate={data.finishDate} stage={data.stages.find(s => s.isCurrent)} />
       <Timeline stages={data.stages} stageImages={stageImages} />
 
       <div className='support-area'></div>

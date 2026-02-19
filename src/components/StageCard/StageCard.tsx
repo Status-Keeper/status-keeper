@@ -1,18 +1,14 @@
-import { images } from "../../assets/images";
+import { getStageImage } from "../../assets/images";
 
 import { toLocaleShortDate } from "../../utils/dateformatter";
 import { Stage } from "../../utils/types/Stage";
 import './StageCard.css'
 
-type Props = { deadline: Date, finishDate?: Date | null, stage: Stage | undefined, imageLinks: { [key: string]: string } }
+type Props = { percent: number, deadline: Date, finishDate?: Date | null, stage: Stage | undefined }
 
-export function StageCard({ deadline, finishDate, stage }: Props) {
-	let url = null;
-	
+export function StageCard({ percent, deadline, finishDate, stage }: Props) {
+	let url = getStageImage(percent);
 
-	if (stage) {
-		url = images['default']
-	}
 
 	if (!stage) {
 		return (
