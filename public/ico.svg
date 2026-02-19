@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- background (white). For transparent: set fill="none" -->
+  <rect width="32" height="32" rx="8" fill="#FFFFFF"/>
+
+  <!-- 4 pills (colors sampled from the attachment) -->
+  <rect x="1"  y="13.5" width="6" height="5" rx="2.5" fill="#75A830"/>
+  <rect x="9"  y="13.5" width="6" height="5" rx="2.5" fill="#558FE1"/>
+  <rect x="17" y="13.5" width="6" height="5" rx="2.5" fill="#E2A32F"/>
+  <rect x="25" y="13.5" width="6" height="5" rx="2.5" fill="#BFC3CD"/>
+</svg>
