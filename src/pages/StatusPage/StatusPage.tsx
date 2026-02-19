@@ -24,6 +24,9 @@ export function StatusPage() {
   let isImagesLoaded = useStageImages(data, setStageImages);
 
 
+  if (!params.get('id')) {
+    return (<NotFoundPage />)
+  }
 
   if (data === null && isDataLoaded) {
     return (
