@@ -23,7 +23,7 @@ export function usePageData(setData: (data: null | ProjectStatus) => void) {
 				const [header, ...rows] = json.values;
 				const guid = header.indexOf('Project_ID_MD5');
 				const userId = header.indexOf('USER_ID');
-				const p = header.indexOf('№ проекта');
+				const projectId = header.indexOf('№ проекта');
 
 
 				const statgeTitle = header.indexOf('Название Этапа');
@@ -70,7 +70,7 @@ export function usePageData(setData: (data: null | ProjectStatus) => void) {
 				setIsDataLoaded(true);
 
 				setData({
-					id: projectInfo[p],
+					id: projectInfo[projectId],
 					userId: projectInfo[userId],
 					progress: parseInt(projectInfo[repairPercent]),
 					stages,
