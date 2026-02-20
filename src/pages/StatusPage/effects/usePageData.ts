@@ -70,8 +70,8 @@ export function usePageData(setData: (data: null | ProjectStatus) => void) {
 				setIsDataLoaded(true);
 
 				setData({
-					id: info[p],
-					userId: info[userId],
+					id: projectInfo[p],
+					userId: projectInfo[userId],
 					progress: parseInt(projectInfo[repairPercent]),
 					stages,
 					deadline: stages[stages.length - 1].deadline!,
