@@ -1,13 +1,15 @@
 
-import Carousel from 'react-gallery-carousel';
-import 'react-gallery-carousel/dist/index.css';
+// import Carousel from 'react-gallery-carousel';
+// import 'react-gallery-carousel/dist/index.css';
+import { Carousel } from 'react-responsive-carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+
 import { toLocaleShortDate } from "../../utils/dateformatter";
 import Collapsible from "../Collapsible/Collapsible";
 import { StageImages } from '../../utils/types/StageItems';
 import { Stage } from '../../utils/types/Stage';
 
 import './Timeline.css';
-
 
 type Props = { stages: Array<Stage>, stageImages: StageImages };
 
@@ -29,9 +31,14 @@ export function Timeline({ stages, stageImages }: Props) {
 										<div className="max-width">
 
 											<Carousel
-												images={stageImages[stage.id].map(img => ({ src: img.url }))} style={{ width: "100%" }}
-												canAutoPlay={false}
-											/>
+												showArrows={true}
+											>
+												{stageImages[stage.id].map(img => (
+													<div key={img.key}>
+														<img src={img.url} />
+													</div>
+												))}
+											</Carousel>
 										</div>
 									</Collapsible>
 								</div>

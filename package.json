@@ -14,14 +14,13 @@
     "@vercel/react-router": "^1.2.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-gallery-carousel": "^0.4.0",
+    "react-responsive-carousel": "^3.2.23",
     "react-router": "^7.13.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
-    "@types/react-gallery-carousel": "^0.2.6",
     "@vitejs/plugin-react": "^4.3.1",
     "eslint": "^9.9.0",
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
