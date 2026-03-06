@@ -25,7 +25,7 @@ export function Timeline({ stages, stageImages }: Props) {
 						}
 
 						{
-							stageImages && stageImages[stage.id] && (
+							stageImages && stageImages[stage.id] && stageImages[stage.id].length > 0 && (
 								<div>
 									<Collapsible title={<div className="timeline-title">{stage.title}</div>}>
 										<div className="max-width">
