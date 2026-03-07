@@ -75,3 +75,30 @@
   border-radius: 16px;
   margin: 0 0 16px;
 }
+
+.swiper-button-next,
+.swiper-button-prev {
+  background: rgba(255, 255, 255, 0.8);
+  width: 40px;
+  height: 40px;
+}
+
+.swiper-button-next {
+  padding-left: 2px;
+  top: auto;
+  left: 60px;
+  bottom: 14px;
+}
+
+.swiper-button-prev {
+  padding-right: 2px;
+  top: auto;
+  left: 10px;
+  bottom: 14px;
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  color: #212121;
+  font-size: 1.25rem;
+}

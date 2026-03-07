@@ -1,8 +1,7 @@
-
-// import Carousel from 'react-gallery-carousel';
-// import 'react-gallery-carousel/dist/index.css';
-import { Carousel } from 'react-responsive-carousel';
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { useRef } from "react";
+import ImageGallery from "react-image-gallery";
+import "react-image-gallery/styles/image-gallery.css";
+import type { ImageGalleryRef } from "react-image-gallery";
 
 import { toLocaleShortDate } from "../../utils/dateformatter";
 import Collapsible from "../Collapsible/Collapsible";
@@ -11,9 +10,13 @@ import { Stage } from '../../utils/types/Stage';
 
 import './Timeline.css';
 
+
 type Props = { stages: Array<Stage>, stageImages: StageImages };
 
 export function Timeline({ stages, stageImages }: Props) {
+	const galleryRef = useRef<ImageGalleryRef>(null);
+
+
 	return (
 		<section className="timeline">
 			{stages.map((stage, idx) => (
@@ -29,16 +32,13 @@ export function Timeline({ stages, stageImages }: Props) {
 								<div>
 									<Collapsible title={<div className="timeline-title">{stage.title}</div>}>
 										<div className="max-width">
-
-											<Carousel
-												showArrows={true}
-											>
-												{stageImages[stage.id].map(img => (
-													<div key={img.key}>
-														<img src={img.url} />
-													</div>
-												))}
-											</Carousel>
+											<ImageGallery
+												ref={galleryRef}
+												items={stageImages[stage.id].map(img => ({ original: img.url, thumbnail: img.url }))}
+												autoPlay={false}
+												useBrowserFullscreen={false}
+												showPlayButton={false}
+											/>
 										</div>
 									</Collapsible>
 								</div>
