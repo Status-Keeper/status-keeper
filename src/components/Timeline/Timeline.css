@@ -50,7 +50,7 @@
 }
 
 .max-width {
-  max-width: 600px;
+  max-width: calc(100vw * 0.7);
 }
 
 .timeline-title {
