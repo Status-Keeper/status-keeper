@@ -7,6 +7,7 @@ import { LandingPage } from './pages/LandingPage/LandingPage.tsx';
 import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage.tsx';
 import { ManagerPage } from './pages/ManagerPage/ManagerPage.tsx';
 import { CookiesUsagePage, PersonalDataPolicyPage, PersonalDataProcessingPage, ReceiveNewslettersPage } from './pages/Privacy';
+import { LandingPage2 } from './pages/LandingPageV2/LP2.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -19,6 +20,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path='status' element={<App />} />
         <Route path='manager' element={<ManagerPage />} />
         <Route path='lp' element={<LandingPage />} />
+        <Route path='lp-new' element={<LandingPage2 />} />
         <Route path='/*' element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
