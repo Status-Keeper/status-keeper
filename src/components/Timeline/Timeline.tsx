@@ -31,6 +31,12 @@ export function Timeline({ stages, stageImages }: Props) {
 							stageImages && stageImages[stage.id] && stageImages[stage.id].length > 0 && (
 								<div>
 									<Collapsible title={<div className="timeline-title">{stage.title}</div>}>
+										<div>
+											<div><b>💡 ИИ Советы по приемке:</b></div>
+											<ul>
+												{stage.hint?.split(';').map(hint => (<li>{hint}</li>))}
+											</ul>
+										</div>
 										<div className="max-width">
 											<ImageGallery
 												ref={galleryRef}

@@ -32,7 +32,7 @@ export function StageCard({ percent, deadline, finishDate, stage }: Props) {
 					<div>
 						<div className="stage-label">Статус этапа</div>
 						<div className="stage-title">{stage.title}</div>
-
+						<span>{stage.hint}</span>
 					</div>
 					<div className="stage-image">
 						{url && (<img src={url} />)}

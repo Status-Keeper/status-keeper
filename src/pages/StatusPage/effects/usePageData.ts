@@ -24,6 +24,7 @@ export function usePageData(setData: (data: null | ProjectStatus) => void) {
 				const guid = header.indexOf('Project_ID_MD5');
 				const userId = header.indexOf('USER_ID');
 				const projectId = header.indexOf('№ проекта');
+				const hint = header.indexOf('AI Hint');
 
 
 				const statgeTitle = header.indexOf('Название Этапа');
@@ -62,6 +63,7 @@ export function usePageData(setData: (data: null | ProjectStatus) => void) {
 							finishDate: stage[finishDate] === '-' ? null : new Date(stage[finishDate]),
 							isCurrent: stage[statgeTitle] === currentStage,
 							deadline: new Date(stage[planDate]),
+							hint: stage[hint] ? stage[hint] : undefined,
 						}
 					);
 				})

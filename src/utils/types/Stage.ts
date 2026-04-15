@@ -6,4 +6,5 @@ export type Stage = {
   finishDate: Date | null;
   isCompleted: boolean;
   isCurrent: boolean;
+  hint?: string;
 }
