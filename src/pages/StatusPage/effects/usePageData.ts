@@ -24,7 +24,8 @@ export function usePageData(setData: (data: null | ProjectStatus) => void) {
 				const guid = header.indexOf('Project_ID_MD5');
 				const userId = header.indexOf('USER_ID');
 				const projectId = header.indexOf('№ проекта');
-				const hint = header.indexOf('AI Hint');
+				const acceptanceHint = header.indexOf('ai_hint_acceptance');
+				const nextStageHint = header.indexOf('ai_hint_next_stage');
 
 
 				const statgeTitle = header.indexOf('Название Этапа');
@@ -63,11 +64,19 @@ export function usePageData(setData: (data: null | ProjectStatus) => void) {
 							finishDate: stage[finishDate] === '-' ? null : new Date(stage[finishDate]),
 							isCurrent: stage[statgeTitle] === currentStage,
 							deadline: new Date(stage[planDate]),
-							hint: stage[hint] ? stage[hint] : undefined,
+							acceptanceHint: stage[acceptanceHint] ? stage[acceptanceHint] : undefined,
+							nextStageHint: stage[nextStageHint] ? stage[nextStageHint] : undefined,
+							isPrevious: false,
 						}
 					);
-				})
+				});
 
+				const currentIndex = stages.findIndex(s => s.isCurrent);
+				
+
+				if (currentIndex !== 0 || currentIndex) {
+				 	stages[currentIndex - 1].isPrevious = true;
+				}
 
 				setIsDataLoaded(true);
 

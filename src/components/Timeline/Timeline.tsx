@@ -9,6 +9,7 @@ import { StageImages } from '../../utils/types/StageItems';
 import { Stage } from '../../utils/types/Stage';
 
 import './Timeline.css';
+import { Hint } from "../HInt/Hint";
 
 
 type Props = { stages: Array<Stage>, stageImages: StageImages };
@@ -24,19 +25,25 @@ export function Timeline({ stages, stageImages }: Props) {
 					<div className={"dot " + (stage.isCompleted ? "done " : "") + (stage.isCurrent ? " current" : "")} >{stage.isCompleted && (<span>✓</span>)}</div>
 					<div style={{ width: '100%' }}>
 						{
-							stageImages && !stageImages[stage.id] && <div className="timeline-title">{stage.title}</div>
+							// Когда нет фотографий для этапа и это не предполсдений этап
+							stageImages && !stageImages[stage.id] && !stage.isPrevious && <div className="timeline-title">{stage.title}</div>
 						}
 
 						{
+							// Когда нет фотографий для этапа и это не предполсдений этап
+							stageImages && !stageImages[stage.id] && stage.isPrevious && stage.acceptanceHint &&
+							<Collapsible title={<div className="timeline-title">{stage.title}</div>}>
+								<Hint
+									hints={stage.acceptanceHint?.split(';')}
+								/>
+							</Collapsible>
+						}
+
+						{
+							// Когда есть изображения
 							stageImages && stageImages[stage.id] && stageImages[stage.id].length > 0 && (
 								<div>
 									<Collapsible title={<div className="timeline-title">{stage.title}</div>}>
-										<div>
-											<div><b>💡 ИИ Советы по приемке:</b></div>
-											<ul>
-												{stage.hint?.split(';').map(hint => (<li>{hint}</li>))}
-											</ul>
-										</div>
 										<div className="max-width">
 											<ImageGallery
 												ref={galleryRef}

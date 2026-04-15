@@ -2,6 +2,7 @@ import { getStageImage } from "../../assets/images";
 
 import { toLocaleShortDate } from "../../utils/dateformatter";
 import { Stage } from "../../utils/types/Stage";
+import { Hint } from "../HInt/Hint";
 import './StageCard.css'
 
 type Props = { percent: number, deadline: Date, finishDate?: Date | null, stage: Stage | undefined }
@@ -32,7 +33,10 @@ export function StageCard({ percent, deadline, finishDate, stage }: Props) {
 					<div>
 						<div className="stage-label">Статус этапа</div>
 						<div className="stage-title">{stage.title}</div>
-						<span>{stage.hint}</span>
+						{
+							stage.nextStageHint &&
+							<Hint title="💡 Как подготовится:" hints={stage.nextStageHint?.split(';')}></Hint>
+						}
 					</div>
 					<div className="stage-image">
 						{url && (<img src={url} />)}

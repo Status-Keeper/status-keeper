@@ -6,5 +6,7 @@ export type Stage = {
   finishDate: Date | null;
   isCompleted: boolean;
   isCurrent: boolean;
-  hint?: string;
+  isPrevious: boolean;
+  acceptanceHint?: string;
+  nextStageHint?: string;
 }
