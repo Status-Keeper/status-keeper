@@ -40,6 +40,12 @@ export function Timeline({ stages, stageImages }: Props) {
 						}
 
 						{
+							// Когда нет фотографий для этапа и это не предполсдений этап
+							stageImages && !stageImages[stage.id] && stage.isPrevious && !stage.acceptanceHint &&
+							<div className="timeline-title">{stage.title}</div>
+						}
+
+						{
 							// Когда есть изображения
 							stageImages && stageImages[stage.id] && stageImages[stage.id].length > 0 && (
 								<div>
