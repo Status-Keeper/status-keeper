@@ -50,6 +50,10 @@ export function Timeline({ stages, stageImages }: Props) {
 							stageImages && stageImages[stage.id] && stageImages[stage.id].length > 0 && (
 								<div>
 									<Collapsible title={<div className="timeline-title">{stage.title}</div>}>
+										{
+											stage.isPrevious && stage.acceptanceHint &&
+											<Hint hints={stage.acceptanceHint?.split(';')} />
+										}
 										<div className="max-width">
 											<ImageGallery
 												ref={galleryRef}
