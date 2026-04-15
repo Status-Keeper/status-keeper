@@ -31,6 +31,9 @@ export function usePageData(setData: (data: Array<ProjectStatus>) => void) {
 				const stageStatus = header.indexOf('Статус этапа');
 				const currentStageIndex = header.indexOf('Текущий этап');
 
+				const acceptanceHint = header.indexOf('ai_hint_acceptance');
+				const nextStageHint = header.indexOf('ai_hint_next_stage');
+
 				const repairPercent = header.indexOf('Статус ремонта');
 
 				const objectTitle = header.indexOf('Название объекта');
@@ -78,9 +81,18 @@ export function usePageData(setData: (data: Array<ProjectStatus>) => void) {
 								isCurrent: stage[statgeTitle] === currentStage,
 								finishDate: stage[finishDate] === '-' ? null : new Date(stage[finishDate]),
 								deadline: new Date(stage[planDate]),
+								acceptanceHint: stage[acceptanceHint] ? stage[acceptanceHint] : undefined,
+								nextStageHint: stage[nextStageHint] ? stage[nextStageHint] : undefined,
+								isPrevious: false,
 							}
 						);
-					})
+					});
+
+					const currentIndex = stages.findIndex(s => s.isCurrent);
+
+					if (currentIndex !== 0 || currentIndex) {
+						stages[currentIndex - 1].isPrevious = true;
+					}
 
 					porjects.push({
 						id: keys[i],
@@ -93,38 +105,6 @@ export function usePageData(setData: (data: Array<ProjectStatus>) => void) {
 					});
 				}
 
-				// for (let z = 0; z < dataRows.length; z++) {
-				// 	const row = dataRows[z];
-
-				// 	const stages: Array<Stage> = [];
-				// 	let hasCurrentStep = false;
-				// 	for (let i = 6, j = 0, k = 18; i <= 15; i++, j++, k++) {
-
-				// 		stages.push(
-				// 			{
-				// 				id: i.toString(),
-				// 				title: header[i],
-				// 				status: row[i],
-				// 				isCompleted: row[i] === '✅',
-				// 				isCurrent: false,
-				// 				deadline: row[k] ? new Date(row[k]) : undefined,
-				// 			}
-				// 		);
-
-				// 		if (!stages[j].isCompleted && !hasCurrentStep) {
-				// 			stages[j].isCurrent = true;
-				// 			hasCurrentStep = true;
-				// 		}
-				// 	}
-
-				// 	porjects.push({
-				// 		id: row[p],
-				// 		progress: parseInt(row[3]),
-				// 		stages,
-				// 		deadline: new Date(row[4].toString()),
-				// 		objectTitle: row[2].toString()
-				// 	});
-				// }
 
 				setIsDataLoaded(true);
 
