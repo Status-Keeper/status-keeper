@@ -1,11 +1,10 @@
+import { Header } from '../../components/Header/Header';
 import './NotFoundPage.css';
 
 export function NotFoundPage() {
 	return (
 		<div className='page'>
-			<header className='pnp_header'>
-				<div className='logo'><span className='logo-bars'><i className='g' /><i className='b' /><i className='o' /><i className='gr' /></span><span className='logo-text'>Status <b>Keeper</b></span></div>
-			</header>
+			<Header />
 			<main className='nf'>
 				<div className='nf-icon'>404</div>
 				<h1 className='nf-title'>Ничего не найдено</h1>

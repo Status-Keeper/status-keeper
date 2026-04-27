@@ -11,6 +11,8 @@ import { useStageImages } from './effects/useStageImages';
 import { ProjectStatus } from '../../utils/types/ProjectStatus';
 import { StageImages } from '../../utils/types/StageItems';
 
+import './StatusPage.css';
+
 export function StatusPage() {
   const [data, setData] = useState<ProjectStatus | null>(null);
   const [stageImages, setStageImages] = useState<StageImages>({});
@@ -75,9 +77,14 @@ export function StatusPage() {
       <Progress value={data.progress} />
       <StageCard percent={data.progress} deadline={data.deadline} finishDate={data.finishDate} stage={data.stages.find(s => s.isCurrent)} />
       <Timeline stages={data.stages} stageImages={stageImages} />
-
+      
+      <div className='fyi'>
+        * - <i>Советы сгенерированы искусственным интеллектом. Они могут быть неточными, поэтому всегда уточняйте ключевые моменты у вашей ремонтной бригады.</i>
+      </div>
+      
       <div className='support-area'></div>
       <TGSupportButton channelUrl='https://t.me/status_keeper_support_bot' />
+
     </div>
   )
 }

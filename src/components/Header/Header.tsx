@@ -1,18 +1,11 @@
 import './Header.css';
+import logo from '../../assets/icon.svg';
 
-export function   Header() {
+export function Header() {
   return (
     <header className="header">
       <div className="logo">
-        <span className="logo-bars">
-          <i className="g" />
-          <i className="b" />
-          <i className="o" />
-          <i className="gr" />
-        </span>
-        <span className="logo-text">
-          Status <b className="green">Keeper</b>
-        </span>
+        <img src={logo} />
       </div>
     </header>
   );

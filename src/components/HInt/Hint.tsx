@@ -1,5 +1,7 @@
+import { ReactNode } from "react";
+
 interface Props {
-	title?: string;
+	title?: string | ReactNode;
 	hints: Array<string>;
 }
 
@@ -12,7 +14,7 @@ export function Hint({ title, hints }: Props) {
 
 	return (
 		<div>
-			<div><b>{title ? title : "💡 ИИ Советы по приемке:"}</b></div>
+			<div><b>{title ? title : <span>💡 ИИ Советы по приемке<sup>*</sup>:</span>}</b></div>
 			<ul>
 				{hints.map(hint => (<li>{capitalize(hint)}</li>))}
 			</ul>
