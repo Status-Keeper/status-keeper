@@ -35,7 +35,7 @@ export function StageCard({ percent, deadline, finishDate, stage }: Props) {
 						<div className="stage-title">{stage.title}</div>
 						{
 							stage.nextStageHint &&
-							<Hint title={<span>💡 Как подготовиться<sup>*</sup>:</span>} hints={stage.nextStageHint?.split(';')}></Hint>
+							<Hint title={<span>💡 Как подготовиться<sup>*</sup></span>} hints={stage.nextStageHint?.split(';')}></Hint>
 						}
 					</div>
 					<div className="stage-image">
