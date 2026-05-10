@@ -31,7 +31,7 @@ export function StageCard({ percent, deadline, finishDate, stage }: Props) {
 			<div>
 				<div className="stage-info">
 					<div>
-						<div className="stage-label">Статус этапа</div>
+						<div className="stage-label">Текущий этап</div>
 						<div className="stage-title">{stage.title}</div>
 						{
 							stage.nextStageHint &&
