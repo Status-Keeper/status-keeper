@@ -83,7 +83,7 @@ export function StatusPage() {
       </div>
       
       <div className='support-area'></div>
-      <TGSupportButton channelUrl='https://t.me/status_keeper_support_bot' />
+      <TGSupportButton channelUrl='https://taplink.cc/sk_support' />
 
     </div>
   )
