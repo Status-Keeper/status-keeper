@@ -70,7 +70,7 @@ export function StatusPage() {
     <div>
       <Header />
       <div className='title-block'>
-        <h1 className="title">Статус ремонта</h1>
+        <h1 className="title">Статус проекта</h1>
       </div>
 
       <div className="subtitle">{data.objectTitle}</div>
