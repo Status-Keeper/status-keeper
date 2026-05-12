@@ -89,9 +89,9 @@ export function StatusPage() {
 
       <Timeline stages={data.stages} stageImages={stageImages} />
 
-      <div className='fyi'>
+      {/* <div className='fyi'>
         * <i>Советы сгенерированы искусственным интеллектом. Они могут быть неточными, поэтому всегда уточняйте ключевые моменты у вашей ремонтной бригады</i>
-      </div>
+      </div> */}
 
       <div className='support-area'></div>
       <TGSupportButton channelUrl='https://taplink.cc/sk_support' />
