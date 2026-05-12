@@ -72,10 +72,10 @@ export function usePageData(setData: (data: null | ProjectStatus) => void) {
 				});
 
 				const currentIndex = stages.findIndex(s => s.isCurrent);
-				
 
-				if (currentIndex !== 0 || currentIndex) {
-				 	stages[currentIndex - 1].isPrevious = true;
+
+				if (currentIndex > 0) {
+					stages[currentIndex - 1].isPrevious = true;
 				}
 
 				setIsDataLoaded(true);

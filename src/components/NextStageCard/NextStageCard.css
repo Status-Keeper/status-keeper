@@ -1,0 +1,27 @@
+.next-stage-card {
+  background: #F1F4F7;
+  border-radius: 16px;
+  padding: 16px;
+  
+  gap: 12px;
+  margin-bottom: 20px
+}
+
+.next-stage-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.next-stage-label {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  padding-right: 10px;;
+}
+
+.next-stage-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  padding-right: 10px;
+}

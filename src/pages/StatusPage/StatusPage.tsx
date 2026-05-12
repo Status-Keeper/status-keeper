@@ -12,6 +12,7 @@ import { ProjectStatus } from '../../utils/types/ProjectStatus';
 import { StageImages } from '../../utils/types/StageItems';
 
 import './StatusPage.css';
+import { NextStageCard } from '../../components/NextStageCard/NextStageCard';
 
 export function StatusPage() {
   const [data, setData] = useState<ProjectStatus | null>(null);
@@ -66,6 +67,8 @@ export function StatusPage() {
     )
   }
 
+  const currentStageIndex = data.stages.findIndex(s => s.isCurrent);
+
   return (
     <div>
       <Header />
@@ -75,13 +78,18 @@ export function StatusPage() {
 
       <div className="subtitle">{data.objectTitle}</div>
       <Progress value={data.progress} />
-      <StageCard percent={data.progress} deadline={data.deadline} finishDate={data.finishDate} stage={data.stages.find(s => s.isCurrent)} />
+      <StageCard percent={data.progress} deadline={data.deadline} finishDate={data.finishDate} stage={data.stages[currentStageIndex]} />
+      {
+        (currentStageIndex + 1) <= data.stages.length &&
+        <NextStageCard stage={data.stages[currentStageIndex + 1]} hint={data.stages[currentStageIndex].nextStageHint} />
+      }
+
       <Timeline stages={data.stages} stageImages={stageImages} />
-      
+
       <div className='fyi'>
         * <i>Советы сгенерированы искусственным интеллектом. Они могут быть неточными, поэтому всегда уточняйте ключевые моменты у вашей ремонтной бригады</i>
       </div>
-      
+
       <div className='support-area'></div>
       <TGSupportButton channelUrl='https://taplink.cc/sk_support' />
 
