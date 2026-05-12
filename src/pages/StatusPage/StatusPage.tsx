@@ -83,10 +83,13 @@ export function StatusPage() {
         currentStageIndex > 0 && (currentStageIndex + 1) <= data.stages.length &&
         <NextStageCard stage={data.stages[currentStageIndex + 1]} hint={data.stages[currentStageIndex].nextStageHint} />
       }
-      <div className='fyi'>
-        * <i>Советы сгенерированы искусственным интеллектом. Они могут быть неточными, поэтому всегда уточняйте ключевые моменты у вашей ремонтной бригады</i>
-      </div>
-
+      
+      {
+        currentStageIndex > 0 && (currentStageIndex + 1) <= data.stages.length &&
+        <div className='fyi'>
+          * <i>Советы сгенерированы искусственным интеллектом. Они могут быть неточными, поэтому всегда уточняйте ключевые моменты у вашей ремонтной бригады</i>
+        </div>
+      }
       <Timeline stages={data.stages} stageImages={stageImages} />
 
       {/* <div className='fyi'>
