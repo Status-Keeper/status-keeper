@@ -17,7 +17,7 @@ export function NextStageCard({ stage, hint }: Props) {
 			<div>
 				<div className="next-stage-info">
 					<div>
-						<div className="next-stage-label">Текущий этап</div>
+						<div className="next-stage-label">Следующий этап</div>
 						<div className="next-stage-title">{stage.title}</div>
 						{
 							stage.nextStageHint &&
