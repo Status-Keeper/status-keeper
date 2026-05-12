@@ -32,18 +32,13 @@ export function StageCard({ percent, deadline, finishDate, stage }: Props) {
 					<div>
 						<div className="stage-label">Текущий этап</div>
 						<div className="stage-title">{stage.title}</div>
+						<div className="stage-date">
+							Примерная дата завершения: <b>{toLocaleShortDate(stage.deadline!)}</b>
+						</div>
 
 					</div>
 					<div className="stage-image">
 						{url && (<img src={url} />)}
-					</div>
-				</div>
-			</div>
-
-			<div>
-				<div className="stage-info">
-					<div className="stage-date">
-						Примерная дата завершения: <b>{toLocaleShortDate(stage.deadline!)}</b>
 					</div>
 				</div>
 			</div>
