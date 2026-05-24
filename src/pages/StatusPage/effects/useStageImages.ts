@@ -30,6 +30,10 @@ export function useStageImages(data: ProjectStatus | null, setStageImages: (data
 				const u = header.indexOf('USER_ID');
 				const p = header.indexOf('№ проекта');
 
+				const stepNumber = header.indexOf('Этап');
+				const imageCodes = header.indexOf('Image ID штрих');
+				const imageLinks = header.indexOf('Image Link');
+
 				const values = rows.filter((r: string[]) => r[u] === userId && r[p] === projectId);
 
 				if (!values) {
@@ -41,8 +45,16 @@ export function useStageImages(data: ProjectStatus | null, setStageImages: (data
 
 				// @ts-ignore
 				values.forEach(step => {
-					const imageUrls = new String(step[5]).split(',').map(r => ({ key: r.trim(), url: `https://cp.puzzlebot.top/file?b=526145&f=${r.trim()}` }));
-					stepImages[step[3]] = imageUrls;
+					let imageUrls = [];
+					if (step[imageCodes] && step[imageCodes].length > 0) {
+						imageUrls = new String(step[imageCodes]).split(',').map(r => ({ key: r.trim(), url: `https://cp.puzzlebot.top/file?b=526145&f=${r.trim()}` }));
+					}
+
+					if (imageUrls.length === 0 && step[imageLinks] && step[imageLinks].length > 0) {
+						imageUrls = step[imageLinks].split(';').map((r: string, idx: number) => ({ key: idx, url: r }));
+					}
+
+					stepImages[step[stepNumber]] = imageUrls;
 				});
 
 				setIsLoaded(true);
