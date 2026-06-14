@@ -5,7 +5,9 @@ export function Header() {
   return (
     <header className="header">
       <div className="logo">
-        <img src={logo} />
+        <a href='https://statuskeeper.ru' target='_blank'>
+          <img src={logo} />
+        </a>
       </div>
     </header>
   );

@@ -12,6 +12,10 @@ export function Hint({ title, hints }: Props) {
 		return String(value.trim()).charAt(0).toUpperCase() + String(value).slice(1)
 	}
 
+	if (!hints || hints.length === 0) {
+		return null;
+	}
+
 	return (
 		<div>
 			<div><b>{title ? title : <span>💡 ИИ Советы по приемке<sup>*</sup></span>}</b></div>
